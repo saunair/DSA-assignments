@@ -1,0 +1,52 @@
+inversion=0
+def display(a):
+    for i in range(0,len(a)):
+        print a[i]
+
+
+def merge_sort(a,leng):
+    if (leng)>1:
+        a_left=a[:(leng//2)]
+        a_right=a[(leng//2):]
+        leng_l= len(a_left)
+        leng_r=leng - leng_l
+        #print leng_l,leng_r,leng
+        a_left=merge_sort(a_left,leng_l)
+        a_right=merge_sort(a_right,leng_r)
+        return  merge_con(a_left,a_right,leng_l,leng_r)
+    return a   
+    
+def merge_con(a,b,leng_a,leng_b):
+    global inversion
+    i=0
+    j=0
+    leng = leng_a+leng_b
+    ans =[]
+    #print a
+    for k in range(0,leng-1):
+        if i<len(a) and j<len(b):
+            if a[i]<b[j]:
+                ans.append(a[i])
+                i= i+1
+            else:
+                ans.append(b[j])
+                j=j+1
+                inversion=  inversion + (leng/2)-i
+        elif i<leng_a and j>leng_b:
+            ans+a[i:]
+            return ans
+        elif j<leng_b and i>leng_a:
+            ans[k]+b[j:]
+            return ans      
+    return ans       
+
+
+f = open("IntegerArray.txt","r")
+input = [int(line.rstrip()) for line in f]
+input = [1,2,3,9,5]
+sorted =merge_sort(input,len(input))
+#print sorted[100]
+print sorted[:]
+print inversion
+f.close();
+
