@@ -1,4 +1,4 @@
-/*Author: Saikrishna Vasudevan*/
+/*Authors: Saikrishna Vasudevan; Saurabh Nair*/
 #include<stdio.h>
 #include<stdlib.h>
 #include<stdint.h>
